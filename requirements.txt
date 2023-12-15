@@ -10,3 +10,4 @@ pandoc==2.3
 streamlit==1.27.2
 tensorflow==2.15.0
 keras==2.15.0
+scipy==1.11.3
