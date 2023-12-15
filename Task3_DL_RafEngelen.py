@@ -276,7 +276,7 @@ data = {
 }
 
 df = pd.DataFrame(data, index=['My Model', 'Teachable Machine'])
-df
+
 
 # %% [markdown]
 # As you can see, my model scores has a higher accuracy than the Teachable Machine by Google. I am perplexed by this, because i don't think the numbers are accurate. 25% accuracy is very low, especially for the Teachable Machine which is a good Deep Learning Algorithm.
@@ -291,7 +291,7 @@ df
 import streamlit as st
 st.header('Raf Engelen - r0901812 - 3APP01', divider='gray')
 st.title("Task 3 ML: Comparing Deep Learning model to Teachable Machine")
-
+st.write('''As you can see, my model scores has a higher accuracy than the Teachable Machine by Google. I am perplexed by this, because i don't think the numbers are accurate. 25% accuracy is very low, especially for the Teachable Machine which is a good Deep Learning Algorithm.''')
 st.write(df)
 
 
