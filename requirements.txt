@@ -8,3 +8,8 @@ numpy==1.26.0
 pandas==2.1.1
 pandoc==2.3
 streamlit==1.27.2
+tensorflow==2.15.0
+tensorflow-estimator==2.15.0
+tensorflow-intel==2.15.0
+tensorflow-io-gcs-filesystem==0.31.0
+keras==2.15.0
