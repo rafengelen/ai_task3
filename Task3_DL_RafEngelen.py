@@ -15,10 +15,9 @@
 # First of all, I need images so that I can train our Deep Learning model. This needs a lot of images (100+) and the more images gathered, the better the model is trained. 
 
 # %%
-import fastbook
-fastbook.setup_book()
+
 import os
-from fastbook import *
+
 
 # %% [markdown]
 # Next we need our different categories we want to train the model for. I have chosen to characters in Star Wars. So the goal of our algorithm is to tell which character there is on an image. For structure, i create a folders. The main "images" folder and there are folders for each category.
@@ -47,51 +46,7 @@ def setup_directories(categories):
 
 # %%
 category_names = []
-def get_images(categories):
 
-    for category in categories:
-        # Search on DuckDuckGo for images of current category
-        results = search_images_ddg(category, max_images=150)
-        save_and_check_image(category=category, results=results)
-
-def save_and_check_image(category, results):
-    #setup directory path to save images, each category has it's own directory
-    
-    category_name = category.replace(" ","_")
-    directory_path = data_dir+category_name
-    category_names.append(category_name)
-    # number of correctly downloaded image
-    img_number=1
-
-    #loop through all links and catch errors that may occur
-    for index, link in enumerate(results):
-        try:
-            # get the images
-            response = requests.get(link, timeout=10)
-
-            # Check if the request was successful 
-            if response.status_code == 200:
-
-                # Get file extension and check if they are a correct image extension
-                file_extension = link.split('.')[-1]
-                if file_extension in ["jpeg", "jpg", "png"]:
-
-                    # Save the image to a file with img_number as a identifier
-                    filename = f"{category_name}_duckduckgo_{img_number}.{file_extension}"
-                    filepath = os.path.join(directory_path, filename)
-                    
-                    with open(filepath, 'wb') as file:
-                        for chunk in response.iter_content(chunk_size=128):
-                            file.write(chunk)
-                
-                    
-                    print(f"Image {index + 1} downloaded: {filename}")
-                    img_number+=1
-            else:
-                print(f"Invalid response status for image {index+1}: {response.status_code}")
-        except Exception as e:
-            print(f"Error downloading image {index+1}: {str(e)}")
-            continue
 
 #get_images(categories)
 
@@ -304,6 +259,7 @@ tm_model = setup_tm()
 # Now I will use the test dataset to test both the Teachable Machine and my own model.
 
 # %%
+import pandas as pd
 
 test_loss, test_acc = model.evaluate(test_set)
 print('My model, test accuracy :', test_acc)
